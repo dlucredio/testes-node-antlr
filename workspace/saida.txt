@@ -1,0 +1,5 @@
+function mongo() {
+   atr1 : string;
+   atr4 : bla;
+   nome : String;
+}

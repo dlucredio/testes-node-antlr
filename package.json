@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "antlr4": "^4.11.0"
+  },
+  "name": "projetonode",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {
+    
+  },
+  "scripts": {
+    "build": "npm run generate && npm run obfuscate && npm run copy-folders",
+    "generate": "npm run antlr4-js",
+    "antlr4-js": "java -Xmx500M -jar /usr/local/lib/antlr-4.11.1-complete.jar -Dlanguage=JavaScript -lib grammars -o gen -visitor -Xexact-output-dir grammars/MyGrammar.g4",
+    "start": "node main.js workspace/entrada.txt workspace/saida.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
