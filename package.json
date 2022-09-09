@@ -1,14 +1,12 @@
 {
   "dependencies": {
-    "antlr4": "^4.11.0"
+    "antlr4": "^4.11.0",
+    "md5": "^2.3.0"
   },
   "name": "projetonode",
   "type": "module",
   "version": "1.0.0",
   "main": "main.js",
-  "devDependencies": {
-    
-  },
   "scripts": {
     "build": "npm run generate && npm run obfuscate && npm run copy-folders",
     "generate": "npm run antlr4-js",

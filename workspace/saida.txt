@@ -1,5 +1,4 @@
-function mongo() {
-   atr1 : string;
-   atr4 : bla;
+function muda() {
    nome : String;
+   email : String;
 }

@@ -3,10 +3,24 @@ import PythonGenerator from './generator/PythonGenerator.js';
 import MyGrammarLexer from './gen/MyGrammarLexer.js';
 import MyGrammarParser from './gen/MyGrammarParser.js';
 import fs from 'fs';
+import md5 from 'md5';
 
 function main(args) {
     const [ inputFile, outputFile ] = args;
-    
+
+    let md5Previous = null;
+    let fsWait = false;
+
+    console.log(`Watching ${inputFile}`);
+
+    fs.watchFile(inputFile, (curr, prev) => {
+        console.log(`Generating new ${outputFile}`);
+        generateCode(inputFile, outputFile);
+    });
+
+}
+
+function generateCode(inputFile, outputFile) {
     if(fs.existsSync(outputFile)) {
         fs.rmSync(outputFile);
     }
@@ -21,7 +35,7 @@ function main(args) {
     const generator = new PythonGenerator((content) => {
         fs.appendFileSync(outputFile, content);
     });
-    tree.accept(generator)
+    tree.accept(generator);
 }
 
 const args = process.argv.slice(2);
