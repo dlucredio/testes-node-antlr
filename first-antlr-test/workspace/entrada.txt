@@ -1,4 +1,4 @@
-prog muda [
+prog programa [
     nome = String
     email = String
 ]

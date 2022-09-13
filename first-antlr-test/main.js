@@ -3,19 +3,27 @@ import PythonGenerator from './generator/PythonGenerator.js';
 import MyGrammarLexer from './gen/MyGrammarLexer.js';
 import MyGrammarParser from './gen/MyGrammarParser.js';
 import fs from 'fs';
-import md5 from 'md5';
+import sleep from 'sleep';
 
 function main(args) {
     const [ inputFile, outputFile ] = args;
 
-    let md5Previous = null;
     let fsWait = false;
 
     console.log(`Watching ${inputFile}`);
 
-    fs.watchFile(inputFile, (curr, prev) => {
-        console.log(`Generating new ${outputFile}`);
-        generateCode(inputFile, outputFile);
+    fs.watch(inputFile, (event, filename) => {
+        if (filename) {
+            if (fsWait) return;
+            fsWait = true;
+            fsWait = setTimeout(() => {
+                fsWait = false;
+            }, 500);
+            console.log(`Generating new ${outputFile}`);
+            sleep.msleep(100);
+            generateCode(inputFile, outputFile);
+           
+        }
     });
 
 }
