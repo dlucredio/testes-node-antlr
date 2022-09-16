@@ -1,0 +1,34 @@
+GET http://127.0.0.1:8000/events_list
+
+###
+
+GET http://127.0.0.1:8000/helloWorld
+
+###
+POST http://127.0.0.1:8000/add_event
+Content-Type: application/json
+
+{
+  "name": "test event",
+  "adultsOnly": false,
+  "attendees": 100,
+  "description": "test description"
+}
+
+###
+
+POST http://127.0.0.1:8000/sum
+Content-Type: application/json
+
+{
+  "arg1": 12,
+  "arg2": 20
+}
+
+###
+
+GET http://127.0.0.1:8000/divide/20/0
+
+###
+
+GET http://127.0.0.1:8000/multiply?arg1=2&arg2=15

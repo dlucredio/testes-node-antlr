@@ -1,0 +1,13 @@
+GET http://127.0.0.1:8000/events_list
+
+###
+
+POST http://127.0.0.1:8000/add_event
+Content-Type: application/json
+
+{
+  "name": "test event",
+  "adultsOnly": false,
+  "attendees": 100,
+  "description": "test description"
+}
