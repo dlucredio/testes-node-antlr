@@ -28,7 +28,7 @@ const sum = (ctx) => {
 const divide = (ctx) => {
     const { arg1, arg2 } = ctx.params;
     if (arg2 === '0') {
-        ctx.body = "Division by zero";
+        ctx.body = { error: "Division by zero" };
         ctx.status = 400;
     } else {
         const result = {

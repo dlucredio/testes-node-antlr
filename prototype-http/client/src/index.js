@@ -21,7 +21,7 @@ async function start() {
     url = 'http://127.0.0.1:8000/helloWorld';
     console.log(`GET ${url}`);
     result = await fetch(url);
-    console.log(await result.json());
+    console.log(await result);
 
     url = 'http://127.0.0.1:8000/add_event';
     console.log(`POST ${url}`);
@@ -32,7 +32,7 @@ async function start() {
             'Content-Type': 'application/json'
         }
     });
-    console.log(await result.json());
+    console.log(await result);
 
     url = 'http://127.0.0.1:8000/events_list';
     console.log(`GET ${url}`);

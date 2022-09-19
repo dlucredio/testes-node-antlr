@@ -1,0 +1,15 @@
+{
+  "name": "monolith",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "generate": "distributor-scripts entrada saida"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "distributor": "file:../../distributor"
+  }
+}
