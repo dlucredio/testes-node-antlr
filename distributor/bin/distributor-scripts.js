@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-import principal from '../src/main.js';
+import entrypoint from '../src/main.js';
 
 const args = process.argv.slice(2);
 
-principal(args);
+const [ mode, target, inputDirRelative, outputDirRelative ] = args;
+
+entrypoint(mode, target, inputDirRelative, outputDirRelative);

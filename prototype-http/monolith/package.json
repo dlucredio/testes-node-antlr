@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
-  "type": "module",
   "scripts": {
-    "generate": "distributor-scripts entrada saida"
+    "generate-single": "distributor-scripts single koa src src-gen",
+    "generate-watch": "distributor-scripts watch koa src src-gen",
+    "start": "node src/main.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "distributor": "file:../../distributor"
+    "distributor": "file:../../distributor",
+    "jest": "^29.0.3"
   }
 }
