@@ -5,6 +5,7 @@ import glob from 'glob';
 import sleep from 'sleep';
 import beautify from 'js-beautify';
 import KoaGenerator from './generators/koa-generator.js';
+import { flattenGeneratedCode } from './generators/generator-utils.js';
 import JavaScriptLexer from './antlr4/JavaScriptLexer.js';
 import JavaScriptParser from './antlr4/JavaScriptParser.js';
 
@@ -63,24 +64,25 @@ function generateCode(target, inputFile, outputFile) {
         parser.buildParseTrees = true;
         const tree = parser.program();
 
-        let generatedContent = '';
+        let generatedContent = null;
 
         if (target === 'koa') {
-            const generator = new KoaGenerator((content) => {
-                generatedContent += content;
-            });
-            tree.accept(generator);
+            const generator = new KoaGenerator();
+            generatedContent = tree.accept(generator);
         }
 
         if (fs.existsSync(outputFile)) {
             fs.rmSync(outputFile);
         }
-        fs.writeFileSync(outputFile,
-            beautify(generatedContent,
-                {
-                    indent_size: 4,
-                    space_in_empty_paren: true
-                }));
+
+        if (generatedContent !== null) {
+            fs.writeFileSync(outputFile,
+                beautify(flattenGeneratedCode(generatedContent),
+                    {
+                        indent_size: 4,
+                        space_in_empty_paren: true
+                    }));
+        }
     } catch (e) {
         console.log(e);
     }
